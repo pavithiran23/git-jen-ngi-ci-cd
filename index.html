@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sky-Gamers</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --neon-blue: #00f0ff;
+      --neon-purple: #9d00ff;
+      --neon-green: #00ff88;
+      --dark-bg: #080808;
+      --light-bg: #f5f5f5;
+      --dark-text: #eaeaea;
+      --light-text: #111;
+    }
+
+    html[data-theme='dark'] {
+      --bg-color: var(--dark-bg);
+      --text-color: var(--dark-text);
+      --accent: var(--neon-blue);
+      --sub-accent: var(--neon-purple);
+      --shadow: 0 0 15px var(--accent);
+    }
+
+    html[data-theme='light'] {
+      --bg-color: var(--light-bg);
+      --text-color: var(--light-text);
+      --accent: var(--neon-purple);
+      --sub-accent: var(--neon-green);
+      --shadow: 0 0 5px var(--accent);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: 'Orbitron', sans-serif;
+      transition: background-color 0.4s, color 0.4s;
+      scroll-behavior: smooth;
+    }
+
+    header {
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(8px);
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--accent);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    header h1 {
+      color: var(--accent);
+      font-size: 2rem;
+      text-shadow: var(--shadow);
+    }
+
+    nav a {
+      margin-left: 20px;
+      text-decoration: none;
+      color: var(--text-color);
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: var(--accent);
+    }
+
+    .theme-toggle {
+      border: 1px solid var(--accent);
+      background: transparent;
+      color: var(--accent);
+      padding: 8px 14px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .theme-toggle:hover {
+      background-color: var(--accent);
+      color: var(--bg-color);
+      box-shadow: var(--shadow);
+    }
+
+    .hero {
+      padding: 100px 40px 60px;
+      text-align: center;
+      background: radial-gradient(circle at center, rgba(0,255,255,0.1), transparent 70%);
+      border-bottom: 1px solid var(--sub-accent);
+    }
+
+    .hero h2 {
+      font-size: 3.5rem;
+      color: var(--accent);
+      text-shadow: var(--shadow);
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: var(--text-color);
+      margin-top: 20px;
+      max-width: 700px;
+      margin-inline: auto;
+    }
+
+    section {
+      padding: 60px 40px;
+      position: relative;
+      z-index: 1;
+    }
+
+    section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 10%;
+      width: 80%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.02), transparent);
+      z-index: -1;
+    }
+
+    h2 {
+      font-size: 2rem;
+      color: var(--sub-accent);
+      margin-bottom: 20px;
+      text-shadow: 0 0 10px var(--sub-accent);
+    }
+
+    p, li {
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    ul li {
+      margin-bottom: 10px;
+    }
+
+    footer {
+      background-color: #0f0f0f;
+      text-align: center;
+      padding: 30px 10px;
+      color: var(--text-color);
+      border-top: 1px solid var(--accent);
+      box-shadow: inset 0 2px 10px rgba(0, 255, 255, 0.1);
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* Add light motion */
+    section:hover::before {
+      animation: wave 2s linear infinite;
+    }
+
+    @keyframes wave {
+      0% { transform: scaleX(1); opacity: 0.05; }
+      50% { transform: scaleX(1.2); opacity: 0.1; }
+      100% { transform: scaleX(1); opacity: 0.05; }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        gap: 10px;
+      }
+      .hero h2 {
+        font-size: 2.2rem;
+      }
+      section {
+        padding: 40px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Sky-Gamers</h1>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#events">Events</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="theme-toggle" onclick="toggleTheme()">Toggle Theme</button>
+  </header>
+
+  <section class="hero">
+    <h2>Sky-Gamers</h2>
+    <p>The future of gaming is here. Compete. Connect. Conquer.</p>
+  </section>
+
+  <section id="about">
+    <h2>🧬 About Us</h2>
+    <p>We're more than just a gaming society. Sky-Gamers is a movement of elite competitors, casual players, and creative coders pushing boundaries in the gaming universe. From FPS battles to strategy nights, we blur the lines between digital and reality.</p>
+  </section>
+
+  <section id="events">
+    <h2>🎮 Upcoming Events</h2>
+    <ul>
+      <li><strong>Neon Arena Night:</strong> Friday 10 PM – Aug 30</li>
+      <li><strong>Code & Combat Hackathon:</strong> Sept 12</li>
+      <li><strong>Valorant Elite League:</strong> October 5–10</li>
+    </ul>
+  </section>
+
+  <section id="contact">
+    <h2>📡 Connect With Us</h2>
+    <p>📧 Email: <a href="mailto:contact@skygamers.com">contact@skygamers.com</a></p>
+    <p>💬 Discord: <a href="#">Join the Server</a></p>
+    <p>📱 Social: <a href="#">@sky.gamers</a></p>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Sky-Gamers – Built by players, for players. Respect the grind.</p>
+  </footer>
+
+  <script>
+    function toggleTheme() {
+      const root = document.documentElement;
+      const current = root.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+    }
+  </script>
+
+</body>
+</html>
+
