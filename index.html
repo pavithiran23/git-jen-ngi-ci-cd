@@ -3,33 +3,28 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Sky-Gamers</title>
+  <title>Shadow Gamers</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --neon-blue: #00f0ff;
-      --neon-purple: #9d00ff;
-      --neon-green: #00ff88;
-      --dark-bg: #080808;
-      --light-bg: #f5f5f5;
-      --dark-text: #eaeaea;
-      --light-text: #111;
+      --grad-blue-purple: linear-gradient(135deg, #00f0ff, #9d00ff);
+      --grad-green-pink: linear-gradient(135deg, #00ff88, #ff00c8);
+      --text-dark: #f0f0f0;
     }
 
     html[data-theme='dark'] {
-      --bg-color: var(--dark-bg);
-      --text-color: var(--dark-text);
-      --accent: var(--neon-blue);
-      --sub-accent: var(--neon-purple);
-      --shadow: 0 0 15px var(--accent);
+      --bg-gradient: linear-gradient(-45deg, #000000, #0a0a2a, #1a0033, #002b3d);
+      --text-color: var(--text-dark);
+      --accent-grad: var(--grad-blue-purple);
+      --glow-color: #00f0ff;
     }
 
     html[data-theme='light'] {
-      --bg-color: var(--light-bg);
-      --text-color: var(--light-text);
-      --accent: var(--neon-purple);
-      --sub-accent: var(--neon-green);
-      --shadow: 0 0 5px var(--accent);
+      /* Keeping it dark even in light mode for readability */
+      --bg-gradient: linear-gradient(-45deg, #000000, #111122, #220044, #002233);
+      --text-color: #fefefe;
+      --accent-grad: var(--grad-green-pink);
+      --glow-color: #ff00c8;
     }
 
     * {
@@ -39,30 +34,40 @@
     }
 
     body {
-      background-color: var(--bg-color);
+      background: var(--bg-gradient);
+      background-size: 400% 400%;
+      animation: gradientBG 20s ease infinite;
       color: var(--text-color);
       font-family: 'Orbitron', sans-serif;
-      transition: background-color 0.4s, color 0.4s;
       scroll-behavior: smooth;
+      text-shadow: 0 0 4px rgba(0,0,0,0.8);
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
     header {
-      background: rgba(0, 0, 0, 0.7);
-      backdrop-filter: blur(8px);
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(10px);
       padding: 20px 40px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-bottom: 1px solid var(--accent);
+      border-bottom: 2px solid var(--glow-color);
       position: sticky;
       top: 0;
       z-index: 1000;
     }
 
     header h1 {
-      color: var(--accent);
-      font-size: 2rem;
-      text-shadow: var(--shadow);
+      font-size: 2.2rem;
+      background: var(--accent-grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 15px var(--glow-color);
     }
 
     nav a {
@@ -74,13 +79,14 @@
     }
 
     nav a:hover {
-      color: var(--accent);
+      color: var(--glow-color);
+      text-shadow: 0 0 6px var(--glow-color);
     }
 
     .theme-toggle {
-      border: 1px solid var(--accent);
+      border: 1px solid var(--glow-color);
       background: transparent;
-      color: var(--accent);
+      color: var(--glow-color);
       padding: 8px 14px;
       border-radius: 5px;
       cursor: pointer;
@@ -88,30 +94,33 @@
     }
 
     .theme-toggle:hover {
-      background-color: var(--accent);
-      color: var(--bg-color);
-      box-shadow: var(--shadow);
+      background-color: var(--glow-color);
+      color: #000;
+      box-shadow: 0 0 12px var(--glow-color);
     }
 
     .hero {
       padding: 100px 40px 60px;
       text-align: center;
-      background: radial-gradient(circle at center, rgba(0,255,255,0.1), transparent 70%);
-      border-bottom: 1px solid var(--sub-accent);
+      background: radial-gradient(circle at center, rgba(255,255,255,0.06), transparent 70%);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .hero h2 {
-      font-size: 3.5rem;
-      color: var(--accent);
-      text-shadow: var(--shadow);
+      font-size: 4rem;
+      background: var(--accent-grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 18px var(--glow-color);
     }
 
     .hero p {
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       color: var(--text-color);
       margin-top: 20px;
       max-width: 700px;
       margin-inline: auto;
+      text-shadow: 0 0 6px rgba(0,0,0,0.9);
     }
 
     section {
@@ -127,20 +136,24 @@
       left: 10%;
       width: 80%;
       height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.02), transparent);
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.03), transparent);
       z-index: -1;
     }
 
     h2 {
-      font-size: 2rem;
-      color: var(--sub-accent);
+      font-size: 2.2rem;
       margin-bottom: 20px;
-      text-shadow: 0 0 10px var(--sub-accent);
+      background: var(--accent-grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 14px var(--glow-color);
     }
 
     p, li {
-      font-size: 1rem;
-      line-height: 1.7;
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: var(--text-color);
+      text-shadow: 0 0 5px rgba(0,0,0,0.7);
     }
 
     ul {
@@ -148,46 +161,46 @@
     }
 
     ul li {
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
 
     footer {
-      background-color: #0f0f0f;
+      background-color: rgba(0,0,0,0.8);
       text-align: center;
       padding: 30px 10px;
       color: var(--text-color);
-      border-top: 1px solid var(--accent);
-      box-shadow: inset 0 2px 10px rgba(0, 255, 255, 0.1);
+      border-top: 1px solid var(--glow-color);
+      box-shadow: inset 0 2px 15px rgba(0, 255, 255, 0.1);
+      font-size: 0.95rem;
     }
 
     a {
-      color: var(--accent);
+      color: var(--glow-color);
       text-decoration: none;
     }
 
     a:hover {
       text-decoration: underline;
+      text-shadow: 0 0 6px var(--glow-color);
     }
 
-    /* Add light motion */
     section:hover::before {
-      animation: wave 2s linear infinite;
+      animation: shimmer 2s infinite linear;
     }
 
-    @keyframes wave {
-      0% { transform: scaleX(1); opacity: 0.05; }
-      50% { transform: scaleX(1.2); opacity: 0.1; }
-      100% { transform: scaleX(1); opacity: 0.05; }
+    @keyframes shimmer {
+      0% { opacity: 0.02; }
+      50% { opacity: 0.07; transform: scaleX(1.1); }
+      100% { opacity: 0.02; }
     }
 
-    /* Responsive */
     @media (max-width: 768px) {
       header {
         flex-direction: column;
         gap: 10px;
       }
       .hero h2 {
-        font-size: 2.2rem;
+        font-size: 2.5rem;
       }
       section {
         padding: 40px 20px;
@@ -198,7 +211,7 @@
 <body>
 
   <header>
-    <h1>Sky-Gamers</h1>
+    <h1>Shadow Gamers</h1>
     <nav>
       <a href="#about">About</a>
       <a href="#events">Events</a>
@@ -208,33 +221,33 @@
   </header>
 
   <section class="hero">
-    <h2>Sky-Gamers</h2>
-    <p>The future of gaming is here. Compete. Connect. Conquer.</p>
+    <h2>Shadow Gamers</h2>
+    <p>Rise from the shadows. Compete beyond the limits. Join the elite.</p>
   </section>
 
   <section id="about">
     <h2>🧬 About Us</h2>
-    <p>We're more than just a gaming society. Sky-Gamers is a movement of elite competitors, casual players, and creative coders pushing boundaries in the gaming universe. From FPS battles to strategy nights, we blur the lines between digital and reality.</p>
+    <p>Shadow Gamers is a futuristic gaming collective where pro-level skills, strategy, and innovation collide. We host elite events, hack nights, and immersive tournaments crafted to push you beyond the meta.</p>
   </section>
 
   <section id="events">
     <h2>🎮 Upcoming Events</h2>
     <ul>
-      <li><strong>Neon Arena Night:</strong> Friday 10 PM – Aug 30</li>
-      <li><strong>Code & Combat Hackathon:</strong> Sept 12</li>
-      <li><strong>Valorant Elite League:</strong> October 5–10</li>
+      <li><strong>Cyber Clash Showdown:</strong> Friday 10 PM – Aug 30</li>
+      <li><strong>Hack & Slash DevJam:</strong> Sept 12</li>
+      <li><strong>Shadow Arena Tournament:</strong> Oct 5–10</li>
     </ul>
   </section>
 
   <section id="contact">
     <h2>📡 Connect With Us</h2>
-    <p>📧 Email: <a href="mailto:contact@skygamers.com">contact@skygamers.com</a></p>
+    <p>📧 Email: <a href="mailto:contact@shadowgamers.com">contact@shadowgamers.com</a></p>
     <p>💬 Discord: <a href="#">Join the Server</a></p>
-    <p>📱 Social: <a href="#">@sky.gamers</a></p>
+    <p>📱 Social: <a href="#">@shadow.gamers</a></p>
   </section>
 
   <footer>
-    <p>&copy; 2025 Sky-Gamers – Built by players, for players. Respect the grind.</p>
+    <p>&copy; 2025 Shadow Gamers — Powering the Next Level of Play.</p>
   </footer>
 
   <script>
